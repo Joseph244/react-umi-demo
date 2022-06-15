@@ -5,13 +5,19 @@ const logout = () => {
   history.push('/login')
 }
 
-const products = [{
-  id:1,
-  name: "张三",
-},
-{id: 2,name: "李四"}
+const products = [
+  {
+    // key:1, // table要求必须有key
+    id:1,
+    name: "张三",
+  },
+  {
+    // key: 2,
+    id: 2,
+    name: "李四"
+  }
 ]
-const onDelete = (id) => {
+const onDelete = (id: number) => {
   alert('delete' + id)
 }
 
@@ -27,7 +33,7 @@ const ProductList = () => {
     },
     {
       title: 'Actions',
-      render: (text, record, index) => {
+      render: (text: any, record: any) => {
         return (
           <Popconfirm title="Delete?" onConfirm={() => onDelete(record.id)}>
             <Button>Delete</Button>
@@ -43,7 +49,7 @@ const ProductList = () => {
           }}>
       退出
     </Button>
-    <Table dataSource={products} columns={columns} />
+    <Table dataSource={products} rowKey={'id'} columns={columns} />
   </div>;
 };
 
